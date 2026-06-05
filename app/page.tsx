@@ -1,104 +1,77 @@
-import { ArrowRight, CheckCircle2, Code2, Eye, LockKeyhole, Zap } from "lucide-react";
+import { ArrowRight, Camera, Sparkles, Stars } from "lucide-react";
+import Link from "next/link";
 
-import { HandVisualizer } from "@/components/hand-visualizer";
-import { MetricCard } from "@/components/metric-card";
-import { SiteFooter } from "@/components/site-footer";
-import { Workflow } from "@/components/workflow";
-import { gestureMetrics, supportedGestures } from "@/lib/gestures";
+import { AppShell } from "@/components/app-shell";
+import { MysticCard } from "@/components/mystic-card";
 
-const capabilities = [
-  {
-    icon: Eye,
-    title: "Live landmark preview",
-    body: "An animated hand skeleton communicates model state even before a user enables camera access."
-  },
-  {
-    icon: LockKeyhole,
-    title: "Privacy-first UX",
-    body: "The demo keeps camera interaction in the browser and exposes mock-safe API metrics for backend prototyping."
-  },
-  {
-    icon: Code2,
-    title: "Typed API surface",
-    body: "Reusable TypeScript models power both UI cards and the /api/metrics route for consistent integrations."
-  }
+const featureCards = [
+  { Icon: Camera, title: "Camera-ready", body: "Works in modern mobile and desktop browsers with upload fallback." },
+  { Icon: Stars, title: "Mock AI magic", body: "Varied entertainment readings now, with a service layer ready for Vision later." },
+  { Icon: Sparkles, title: "Mobile-first", body: "Large touch targets, clear guidance, and polished dark mystical styling." }
+];
+
+const steps = [
+  "Take a clear photo of your open palm.",
+  "Let the mock AI-style reader create a mystical interpretation.",
+  "Read, share, or start again whenever you want."
 ];
 
 export default function Home() {
   return (
-    <main className="min-h-screen overflow-hidden">
-      <section className="relative mx-auto grid max-w-6xl gap-12 px-6 pb-20 pt-8 lg:grid-cols-[1fr_0.9fr] lg:items-center lg:pt-16">
-        <div className="absolute left-1/2 top-0 -z-10 size-[36rem] -translate-x-1/2 rounded-full bg-violet-600/20 blur-3xl" />
-        <nav className="col-span-full flex items-center justify-between rounded-full border border-white/10 bg-white/[0.06] px-5 py-3 backdrop-blur">
-          <a href="#top" className="flex items-center gap-2 text-lg font-semibold text-white">
-            <span className="grid size-9 place-items-center rounded-full bg-teal-300 text-slate-950">HV</span>
-            HandVision
-          </a>
-          <a href="#workflow" className="hidden text-sm text-slate-300 transition hover:text-white sm:inline-flex">
-            Explore workflow
-          </a>
-        </nav>
-
-        <div id="top">
-          <div className="inline-flex items-center gap-2 rounded-full border border-teal-300/20 bg-teal-300/10 px-4 py-2 text-sm text-teal-100">
-            <Zap className="size-4" /> Real-time gesture intelligence starter
+    <AppShell>
+      <main className="mx-auto grid w-full max-w-6xl gap-10 px-5 pb-16 pt-5 sm:px-8 lg:grid-cols-[1.05fr_0.95fr] lg:items-center lg:pt-14">
+        <section className="relative">
+          <div className="mb-5 inline-flex items-center gap-2 rounded-full border border-gold/25 bg-gold/10 px-4 py-2 text-sm text-gold">
+            <Sparkles className="size-4" aria-hidden="true" /> Premium mystical palm readings
           </div>
-          <h1 className="mt-6 max-w-4xl text-5xl font-semibold tracking-tight text-white sm:text-6xl lg:text-7xl">
-            Build touchless products with hand-aware interfaces.
+          <h1 className="max-w-3xl text-5xl font-semibold tracking-tight text-white sm:text-6xl lg:text-7xl">
+            Hand Vision IA for playful palm insight.
           </h1>
-          <p className="mt-6 max-w-2xl text-lg leading-8 text-slate-300">
-            HandVision is a complete Next.js application for demonstrating camera-based gesture recognition,
-            landmark visualization, telemetry, and product storytelling in one self-contained repository.
+          <p className="mt-6 max-w-2xl text-lg leading-8 text-purple-100/85">
+            Take a photo of your palm and receive a fun AI-style palm reading with a luminous aura, personality notes, and gentle guidance.
           </p>
           <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-            <a href="/api/metrics" className="inline-flex items-center justify-center gap-2 rounded-full bg-teal-300 px-6 py-3 font-semibold text-slate-950 transition hover:bg-teal-200">
-              View API payload <ArrowRight className="size-4" />
-            </a>
-            <a href="#gestures" className="inline-flex items-center justify-center gap-2 rounded-full border border-white/15 px-6 py-3 font-semibold text-white transition hover:bg-white/10">
-              Supported gestures
-            </a>
+            <Link
+              href="/camera"
+              className="inline-flex min-h-14 items-center justify-center gap-2 rounded-full bg-gradient-to-r from-gold via-amber-200 to-purple-200 px-7 py-4 font-semibold text-slate-950 shadow-lg shadow-purple-950/30 transition hover:scale-[1.01] hover:brightness-105"
+            >
+              Start Palm Reading <ArrowRight className="size-5" aria-hidden="true" />
+            </Link>
+            <div className="inline-flex min-h-14 items-center justify-center rounded-full border border-white/10 bg-white/5 px-5 py-3 text-sm text-purple-100">
+              For entertainment purposes only.
+            </div>
           </div>
-        </div>
+        </section>
 
-        <HandVisualizer />
-      </section>
-
-      <section className="mx-auto grid max-w-6xl gap-4 px-6 md:grid-cols-3">
-        {gestureMetrics.map((metric) => (
-          <MetricCard key={metric.label} metric={metric} />
-        ))}
-      </section>
-
-      <section className="mx-auto grid max-w-6xl gap-4 px-6 py-20 md:grid-cols-3">
-        {capabilities.map((item) => {
-          const Icon = item.icon;
-
-          return (
-            <article key={item.title} className="rounded-3xl border border-white/10 bg-slate-950/50 p-7">
-              <Icon className="size-8 text-teal-200" />
-              <h2 className="mt-5 text-2xl font-semibold text-white">{item.title}</h2>
-              <p className="mt-3 leading-7 text-slate-300">{item.body}</p>
-            </article>
-          );
-        })}
-      </section>
-
-      <section id="gestures" className="mx-auto max-w-6xl px-6">
-        <div className="rounded-[2rem] border border-white/10 bg-white/[0.06] p-8 backdrop-blur">
-          <p className="text-sm font-semibold uppercase tracking-[0.3em] text-violet-200">Gesture set</p>
-          <div className="mt-6 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
-            {supportedGestures.map((gesture) => (
-              <div key={gesture} className="flex items-center gap-3 rounded-2xl border border-white/10 bg-slate-950/40 p-4 text-slate-100">
-                <CheckCircle2 className="size-5 text-teal-200" />
-                {gesture}
+        <MysticCard className="relative overflow-hidden p-0">
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_25%,rgba(248,217,137,0.25),transparent_18rem)]" />
+          <div className="relative p-6 sm:p-8">
+            <div className="mx-auto grid aspect-square max-w-sm place-items-center rounded-full border border-gold/20 bg-purple-950/30 shadow-glow">
+              <div className="grid size-52 animate-float place-items-center rounded-full border border-white/10 bg-white/5 text-8xl shadow-2xl" aria-hidden="true">
+                ✋
               </div>
-            ))}
+            </div>
+            <div className="mt-6 grid gap-3">
+              {steps.map((step, index) => (
+                <div key={step} className="flex items-center gap-3 rounded-2xl border border-white/10 bg-black/20 p-4 text-sm text-purple-50">
+                  <span className="grid size-8 shrink-0 place-items-center rounded-full bg-gold/15 text-gold">{index + 1}</span>
+                  {step}
+                </div>
+              ))}
+            </div>
           </div>
-        </div>
-      </section>
+        </MysticCard>
 
-      <Workflow />
-      <SiteFooter />
-    </main>
+        <section className="grid gap-4 lg:col-span-2 sm:grid-cols-3">
+          {featureCards.map(({ Icon, title, body }) => (
+            <MysticCard key={title}>
+              <Icon className="size-7 text-gold" aria-hidden="true" />
+              <h2 className="mt-4 text-xl font-semibold">{title}</h2>
+              <p className="mt-2 text-sm leading-6 text-purple-100/75">{body}</p>
+            </MysticCard>
+          ))}
+        </section>
+      </main>
+    </AppShell>
   );
 }
