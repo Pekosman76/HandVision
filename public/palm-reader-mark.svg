@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-label="Palm Reader AI mark">
+  <defs>
+    <linearGradient id="g" x1="18" x2="110" y1="18" y2="110" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#f8d989"/>
+      <stop offset="1" stop-color="#a855f7"/>
+    </linearGradient>
+  </defs>
+  <rect width="128" height="128" rx="32" fill="#070812"/>
+  <circle cx="64" cy="64" r="48" fill="url(#g)" opacity=".18"/>
+  <path fill="none" stroke="url(#g)" stroke-linecap="round" stroke-linejoin="round" stroke-width="7" d="M43 70V39a8 8 0 0 1 16 0v26-34a8 8 0 0 1 16 0v34-27a8 8 0 0 1 16 0v38l4-9a8 8 0 0 1 15 6l-10 25c-5 13-16 20-31 20H61c-16 0-28-12-28-28V76a10 10 0 0 1 10-10Z"/>
+  <path fill="#f8d989" d="M33 22l4 8 8 4-8 4-4 8-4-8-8-4 8-4 4-8Zm76 10 3 6 6 3-6 3-3 6-3-6-6-3 6-3 3-6Z"/>
+</svg>
